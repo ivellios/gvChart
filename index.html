@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>
+			jQuery gvChart plugin - Google Visualization Charts via jQuery
+		</title>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		<script type="text/javascript" src="jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="jquery.gvChart-1.0.1.min.js"></script>
+		<script type="text/javascript">
+		gvChartInit();
+		jQuery(document).ready(function(){
+			jQuery('#myTable1').gvChart({
+				chartType: 'AreaChart',
+				gvSettings: {
+					vAxis: {title: 'No of players'},
+					hAxis: {title: 'Month'},
+					width: 720,
+					height: 300
+					}
+			});
+			
+			
+			jQuery('#myTable2').gvChart({
+				chartType: 'LineChart',
+				gvSettings: {
+					vAxis: {title: 'No of players'},
+					hAxis: {title: 'Month'},
+					width: 720,
+					height: 300
+					}
+			});
+			
+			jQuery('#myTable3').gvChart({
+				chartType: 'BarChart',
+				gvSettings: {
+					vAxis: {title: 'No of players'},
+					hAxis: {title: 'Month'},
+					width: 720,
+					height: 300
+					}
+			});
+			
+			
+			jQuery('#myTable4').gvChart({
+				chartType: 'ColumnChart',
+				gvSettings: {
+					vAxis: {title: 'No of players'},
+					hAxis: {title: 'Month'},
+					width: 720,
+					height: 300
+					}
+			});
+			
+			jQuery('#myTable5').gvChart({
+				chartType: 'PieChart',
+				gvSettings: {
+					vAxis: {title: 'No of players'},
+					hAxis: {title: 'Month'},
+					width: 720,
+					height: 300
+					}
+			});
+		});
+		</script>
+		<style>
+			body{
+				text-align: center;
+				font-family: Arial, sans-serif;
+				font-size: 12px;
+			}
+			
+			a{
+				text-decoration: none;
+				font-weight: bold;
+				color: #555;
+			}
+			
+			a:hover{
+				color: #000;
+			}
+			
+			div.main{
+				margin: auto;
+				text-align: left;
+				width: 720px;
+			}
+		
+			div.clean{
+				border: 1px solid #850000;
+			}
+			
+			.clean td, .clean th{
+				border: 2px solid #bbb;
+				background: #ddd;
+				padding: 5px 10px;
+				text-align: center;
+				border-radius: 2px;
+			}
+			
+			.clean table{
+				margin: auto;
+				margin-top: 15px;
+				margin-bottom: 15px;
+			}
+			
+			.clean caption{
+				font-weight: bold;
+				
+			}
+			
+			.gvChart,.clean{
+				border: 2px solid #850000;
+				border-radius: 5px;
+				-moz-border-radius: 10px;
+				width: 720px;
+				
+				margin: auto;
+				margin-top: 20px;
+			}
+			
+			pre{
+				background: #eee;
+				padding: 10px;
+				border-radius: 10px;
+				-moz-border-radius: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<h1>gvChart - jQuery plugin demo</h1>
+			<p>Below you can see example of the table with data about number of a new players on the page on every month.
+				I have created two data sets, each for one year: 2009 and 2010. They can be shown as a separate datas on the chart (see below).
+			</p>
+			<div class="clean">
+				<table id='myTableClean'>
+					<caption>Game players count</caption>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Jan</th>
+							<th>Feb</th>
+							<th>Mar</th>
+							<th>Apr</th>
+							<th>May</th>
+							<th>Jun</th>
+							<th>Jul</th>
+							<th>Aug</th>
+							<th>Sep</th>
+							<th>Oct</th>
+							<th>Nov</th>
+							<th>Dec</th>
+						</tr>
+					</thead>
+						<tbody>
+						<tr>
+							<th>2010</th>
+							<td>125</td>
+							<td>185</td>
+							<td>327</td>
+							<td>359</td>
+							<td>376</td>
+							<td>398</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<th>2009</th>
+							<td>1167</td>
+							<td>1110</td>
+							<td>691</td>
+							<td>165</td>
+							<td>135</td>
+							<td>157</td>
+							<td>139</td>
+							<td>136</td>
+							<td>938</td>
+							<td>1120</td>
+							<td>55</td>
+							<td>55</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h2>General use</h2>
+			<p>To use this plugin you have to put <em>script</em> tags reffering to jQuery, gvChart and Google jsapi.</p>
+			
+<pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.gvChart-1.0.min.js&quot;&gt;&lt;/script&gt;
+</pre>
+<p><strong>Important!</strong> Google <em>jsapi</em> script tag must be placed before <em>gvChart</em> script.</p>
+<p>Before using script you have to initialize Google Api, by using <em>gvChartInit()</em> function. <strong>This function may not work when placed in the external JavaScript file.</strong> It is better idea to place it inline in the <em>head</em>.</p>
+<pre>
+&lt;script type=&quot;text/javascript&quot;&gt;
+	gvChartInit();
+&lt;/script&gt;
+</pre>
+<p>Now you can use gvChart in your scripts. Below is a basic example of usage. <p>
+<pre>
+jQuery('#myTable').gvChart({
+	chartType: 'ColumnChart',
+	gvSettings: {
+		vAxis: {title: 'No of players'},
+		hAxis: {title: 'Month'},
+		width: 720,
+		height: 300,
+		}
+});
+</pre>
+			<h3>Settings</h3>
+			<h4>chartType</h4>
+			<p>You can use five different google charts, by setting <em>chartType</em> to one of:</p>
+			<ul>
+				<li><a href="#area">AreaChart</a></li>
+				<li><a href="#line">LineChart</a></li>
+				<li><a href="#bar">BarChart</a></li>
+				<li><a href="#column">ColumnChart</a></li>
+				<li><a href="#pie">PieChart</a></li>
+			</ul>
+			<h4>hideTable</h4>
+			<em>Default</em>: true
+			If set to false, it won't hide table while creating the chart.
+			<h4>gvSettings</h4>
+			<p>In the <em>gvSettings</em> variable you can place Google Charts settings, which you can find in the <a href="http://code.google.com/intl/pl-PL/apis/visualization/documentation/gallery.html">Google Visualization API Gallery</a>.
+			
+			
+			
+			
+			<h2 id="area">AreaChart</h2>
+		
+			<table id='myTable1'>
+				<caption>Game players count</caption>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>May</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Aug</th>
+						<th>Sep</th>
+						<th>Oct</th>
+						<th>Nov</th>
+						<th>Dec</th>
+					</tr>
+				</thead>
+					<tbody>
+					<tr>
+						<th>2010</th>
+						<td>125</td>
+						<td>185</td>
+						<td>327</td>
+						<td>359</td>
+						<td>376</td>
+						<td>398</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th>2009</th>
+						<td>1167</td>
+						<td>1110</td>
+						<td>691</td>
+						<td>165</td>
+						<td>135</td>
+						<td>157</td>
+						<td>139</td>
+						<td>136</td>
+						<td>938</td>
+						<td>1120</td>
+						<td>55</td>
+						<td>55</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h2 id="line">LineChart</h2>
+			
+			<table id='myTable2'>
+				<caption>Game players count</caption>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>May</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Aug</th>
+						<th>Sep</th>
+						<th>Oct</th>
+						<th>Nov</th>
+						<th>Dec</th>
+					</tr>
+				</thead>
+					<tbody>
+					<tr>
+						<th>2010</th>
+						<td>125</td>
+						<td>185</td>
+						<td>327</td>
+						<td>359</td>
+						<td>376</td>
+						<td>398</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th>2009</th>
+						<td>1167</td>
+						<td>1110</td>
+						<td>691</td>
+						<td>165</td>
+						<td>135</td>
+						<td>157</td>
+						<td>139</td>
+						<td>136</td>
+						<td>938</td>
+						<td>1120</td>
+						<td>55</td>
+						<td>55</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h2 id="bar">BarChart</h2>
+			
+			<table id='myTable3'>
+				<caption>Game players count</caption>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>May</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Aug</th>
+						<th>Sep</th>
+						<th>Oct</th>
+						<th>Nov</th>
+						<th>Dec</th>
+					</tr>
+				</thead>
+					<tbody>
+					<tr>
+						<th>2010</th>
+						<td>125</td>
+						<td>185</td>
+						<td>327</td>
+						<td>359</td>
+						<td>376</td>
+						<td>398</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th>2009</th>
+						<td>1167</td>
+						<td>1110</td>
+						<td>691</td>
+						<td>165</td>
+						<td>135</td>
+						<td>157</td>
+						<td>139</td>
+						<td>136</td>
+						<td>938</td>
+						<td>1120</td>
+						<td>55</td>
+						<td>55</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h2 id="column">ColumnChart</h2>
+			
+			<table id='myTable4'>
+				<caption>Game players count</caption>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>May</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Aug</th>
+						<th>Sep</th>
+						<th>Oct</th>
+						<th>Nov</th>
+						<th>Dec</th>
+					</tr>
+				</thead>
+					<tbody>
+					<tr>
+						<th>2010</th>
+						<td>125</td>
+						<td>185</td>
+						<td>327</td>
+						<td>359</td>
+						<td>376</td>
+						<td>398</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th>2009</th>
+						<td>1167</td>
+						<td>1110</td>
+						<td>691</td>
+						<td>165</td>
+						<td>135</td>
+						<td>157</td>
+						<td>139</td>
+						<td>136</td>
+						<td>938</td>
+						<td>1120</td>
+						<td>55</td>
+						<td>55</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h2 id="pie">PieChart</h2>
+			
+			<p><strong>Note</strong> that PieChart uses only first table row as a data set. Next data rows are ignored.</p>
+
+			<table id='myTable5'>
+				<caption>Game players count</caption>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>May</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Aug</th>
+						<th>Sep</th>
+						<th>Oct</th>
+						<th>Nov</th>
+						<th>Dec</th>
+					</tr>
+				</thead>
+					<tbody>
+					<tr>
+						<th>2010</th>
+						<td>125</td>
+						<td>185</td>
+						<td>327</td>
+						<td>359</td>
+						<td>376</td>
+						<td>398</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>Credits</h2>
+			<p>Special thanks to <a href="http://yuijim.blogspot.com">Urszula Ciaputa</a> for her help in creating this plugin.</p>
+		</div>
+	</body>
+</html>
+

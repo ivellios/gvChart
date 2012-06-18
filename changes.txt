@@ -1,0 +1,30 @@
+/*
+ * jQuery gvChart plugin
+ * This plugin was created to simplify things when using Google Visualisation Charts. 
+ * It still needs to be used with google script import tag, however now you can
+ * crate chart from your table. 
+ * All examples you will find on http://www.ivellios.toron.pl/technikalia/demos/gvChart/
+ * @name jquery.gvChart-1.0.1.js
+ * @author Janusz Kamieñski - http://www.ivellios.toron.pl/technikalia
+ * @version 1.0.1
+ * @date December 04, 2010
+ * @category jQuery plugin google charts
+ * @copyright (c) 2010 Janusz Kamieñski (www.ivellios.toron.pl)
+ * @license CC Attribution Works 3.0 Poland - http://creativecommons.org/licenses/by/3.0/pl/deed.en_US
+ * @example Visit http://www.ivellios.toron.pl/technikalia/demos/gvChart/ for more informations about this jQuery plugin
+ */
+ 
+v. 1.0.1 (December 04, 2010)
+- [Minor Fix] removed trailing commas before '}' in demo so now it works in IE7
+- jQuery updated to v. 1.4.4
+
+----------------------------------------
+v. 1.0 (September 25, 2010)
+- Deleted trailing comma in chartSettings (IE7 issue)
+- parseInt() changed to parseFloat()
+
+----------------------------------------
+
+v. 0.1
+Start of the project
+
