@@ -13,6 +13,10 @@
  * @license CC Attribution Works 3.0 Poland - http://creativecommons.org/licenses/by/3.0/pl/deed.en_US
  * @example Visit http://www.ivellios.toron.pl/technikalia/demos/gvChart/ for more informations about this jQuery plugin
  */
+
+v 1.1 (June, 2012)
+----------------------------------------
+- Added swap option for swaping columns and rows in the HTML table - change proposed by Glenn Wilton 
  
 v. 1.0.1 (December 04, 2010)
 - [Minor Fix] removed trailing commas before '}' in demo so now it works in IE7
