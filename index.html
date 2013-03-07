@@ -5,65 +5,6 @@
 		<title>
 			jQuery gvChart plugin - Google Visualization Charts via jQuery
 		</title>
-		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-		<script type="text/javascript" src="jquery.gvChart-1.1.min.js"></script>
-		<script type="text/javascript">
-		gvChartInit();
-		jQuery(document).ready(function(){
-			jQuery('#myTable1').gvChart({
-				chartType: 'AreaChart',
-				gvSettings: {
-					vAxis: {title: 'No of players'},
-					hAxis: {title: 'Month'},
-					width: 720,
-					height: 300
-					}
-			});
-			
-			
-			jQuery('#myTable2').gvChart({
-				chartType: 'LineChart',
-				gvSettings: {
-					vAxis: {title: 'No of players'},
-					hAxis: {title: 'Month'},
-					width: 720,
-					height: 300
-					}
-			});
-			
-			jQuery('#myTable3').gvChart({
-				chartType: 'BarChart',
-				gvSettings: {
-					vAxis: {title: 'No of players'},
-					hAxis: {title: 'Month'},
-					width: 720,
-					height: 300
-					}
-			});
-			
-			
-			jQuery('#myTable4').gvChart({
-				chartType: 'ColumnChart',
-				gvSettings: {
-					vAxis: {title: 'No of players'},
-					hAxis: {title: 'Month'},
-					width: 720,
-					height: 300
-					}
-			});
-			
-			jQuery('#myTable5').gvChart({
-				chartType: 'PieChart',
-				gvSettings: {
-					vAxis: {title: 'No of players'},
-					hAxis: {title: 'Month'},
-					width: 720,
-					height: 300
-					}
-			});
-		});
-		</script>
 		<style>
 			body{
 				text-align: center;
@@ -125,6 +66,10 @@
 				padding: 10px;
 				border-radius: 10px;
 				-moz-border-radius: 10px;
+			}
+
+			table {
+				display: none;
 			}
 		</style>
 	</head>
@@ -193,27 +138,21 @@
 			<p>To use this plugin you have to put <em>script</em> tags reffering to jQuery, gvChart and Google jsapi.</p>
 			
 <pre>
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.gvChart-1.0.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.gvChart.min.js&quot;&gt;&lt;/script&gt;
 </pre>
-<p><strong>Important!</strong> Google <em>jsapi</em> script tag must be placed before <em>gvChart</em> script.</p>
-<p>Before using script you have to initialize Google Api, by using <em>gvChartInit()</em> function. <strong>This function may not work when placed in the external JavaScript file.</strong> It is better idea to place it inline in the <em>head</em>.</p>
+<p>The Google Visualization API will begin loading automatically. Once it is finished it will call the deferred object "googleLoaded.done()". This ensures that other elements of your page can continue loading without waiting for the Google API to load.</p>
+<p>Now you can use gvChart in your scripts. Below is a basic example of usage.<p>
 <pre>
-&lt;script type=&quot;text/javascript&quot;&gt;
-	gvChartInit();
-&lt;/script&gt;
-</pre>
-<p>Now you can use gvChart in your scripts. Below is a basic example of usage. <p>
-<pre>
-jQuery('#myTable').gvChart({
-	chartType: 'ColumnChart',
-	gvSettings: {
-		vAxis: {title: 'No of players'},
-		hAxis: {title: 'Month'},
-		width: 720,
-		height: 300,
-		}
+googleLoaded.done( function(){
+	$('#myTable').gvChart({
+		chartType: 'ColumnChart',
+		gvSettings: {
+			vAxis: {title: 'No of players'},
+			hAxis: {title: 'Month'},
+			width: 720,
+			height: 300,
+			}
+	});
 });
 </pre>
 			<h3>Settings</h3>
@@ -497,8 +436,67 @@ jQuery('#myTable').gvChart({
 				</tbody>
 			</table>
 			<h2>Credits</h2>
-			<p>Special thanks to <a href="http://yuijim.blogspot.com">Urszula Ciaputa</a> for her help in creating this plugin.</p>
+			<p>Special thanks to <a href="http://yuijim.blogspot.com">Urszula Ciaputa</a> and <a href="http://www.gilluminate.com">Jason Gill</a> for her help in creating this plugin.</p>
 		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.gvChart.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			googleLoaded.done( function(){
+				$('#myTable1').gvChart({
+					chartType: 'AreaChart',
+					gvSettings: {
+						vAxis: {title: 'No of players'},
+						hAxis: {title: 'Month'},
+						width: 720,
+						height: 300
+						}
+				});
+				
+				
+				$('#myTable2').gvChart({
+					chartType: 'LineChart',
+					gvSettings: {
+						vAxis: {title: 'No of players'},
+						hAxis: {title: 'Month'},
+						width: 720,
+						height: 300
+						}
+				});
+				
+				$('#myTable3').gvChart({
+					chartType: 'BarChart',
+					gvSettings: {
+						vAxis: {title: 'No of players'},
+						hAxis: {title: 'Month'},
+						width: 720,
+						height: 300
+						}
+				});
+				
+				
+				$('#myTable4').gvChart({
+					chartType: 'ColumnChart',
+					gvSettings: {
+						vAxis: {title: 'No of players'},
+						hAxis: {title: 'Month'},
+						width: 720,
+						height: 300
+						}
+				});
+				
+				$('#myTable5').gvChart({
+					chartType: 'PieChart',
+					gvSettings: {
+						vAxis: {title: 'No of players'},
+						hAxis: {title: 'Month'},
+						width: 720,
+						height: 300
+						}
+				});
+			});
+		});
+		</script>
 	</body>
 </html>
 
