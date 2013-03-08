@@ -18,45 +18,48 @@
  		var gvChartCount = 0;
  		google.load('visualization', '1', {packages: ['corechart'],callback:function(){window.googleLoaded.resolve()}});
  		$.fn.gvChart = function(settings){
+ 			var $this = $(this),
+	 			defaults={
+	 				hideTable: true,
+	 				chartType: 'AreaChart',
+	 				chartDivID: 'gvChartDiv',
+	 				gvSettings: null,
+	 				swap: false
+	 			},
+	 			el = $('<div>'),
+	 			gvChartID = defaults.chartDivID+gvChartCount++,
+	 			data,
+	 			headers,
+	 			rows;
 
- 			defaults={
- 				hideTable: true,
- 				chartType: 'AreaChart',
- 				chartDivID: 'gvChartDiv',
- 				gvSettings: null,
- 				swap: false
- 			};
+ 			el.attr('id',gvChartID);
+ 			el.addClass('gvChart');
+ 			el.attr('aria-hidden','true');
 
- 			var el = document.createElement('div');
- 			$(el).insertBefore(this);
- 			gvChartCount++;
- 			gvChartID = defaults.chartDivID+gvChartCount;
- 			$(el).attr('id',gvChartID);
- 			$(el).addClass('gvChart');
+ 			$this.before(el);
 
- 			if(settings){
- 				$.extend(defaults,settings);
+ 			$.extend(defaults,settings);
+
+ 			if(defaults.hideTable){
+ 				$this.hide();
+ 				$this.attr('aria-hidden','false');
  			}
 
- 			if(defaults.hideTable)
- 				$(this).hide();
-
- 			var data = new google.visualization.DataTable();
+ 			data = new google.visualization.DataTable();
 
 			// add X label
 			data.addColumn('string','X labels');
 
-			var a = new Array();
 
-			var headers = $(this).find('thead').find('th');
-			var rows = $(this).find('tbody').find('tr');
+			var headers = $this.find('thead th');
+			var rows = $this.find('tbody tr');
 
 			if(defaults.swap){
 				headers.each(function(index){
 					if(index){
 						data.addColumn('number',$(this).text());
 					}
-				});	
+				});
 				data.addRows(rows.length);
 
 				rows.each(function(index){
@@ -65,7 +68,7 @@
 
 				rows.each(function(index){
 					$(this).find('td').each(function(index2){
-						data.setCell(index, index2+1 , parseFloat($(this).text()) );
+						data.setCell(index, index2+1 , parseFloat($(this).text(),10) );
 					});
 				});		
 				
@@ -75,34 +78,28 @@
 					data.addColumn('number',$(this).find('th').text());
 				});
 
-			    // Create data size
-			    data.addRows(headers.length-1);
+				// Create data size
+				data.addRows(headers.length-1);
 
-			    // Set the TITLE of each row
-			    headers.each(function(index){
-			    	if(index){
-			    		data.setCell(index-1, 0, $(this).text());
-			    	}
-			    });
+				// Set the TITLE of each row
+				headers.each(function(index){
+					if(index){
+						data.setCell(index-1, 0, $(this).text());
+					}
+				});
 
-			    // Populate with data
-			    rows.each(function(index){
-			    	$(this).find('td').each(function(index2){
-			    		data.setCell(index2, index+1, parseFloat($(this).text()) );
-			    	});
-			    });
+				// Populate with data
+				rows.each(function(index){
+					$(this).find('td').each(function(index2){
+						data.setCell(index2, index+1, parseFloat($(this).text(),10) );
+					});
+				});
 			}
 			
-			chartSettings = {
-				title : $(this).find('caption').text()
-			};
+			defaults.gvSettings.title = $(this).find('caption').text();
 			
-			if(defaults.gvSettings){
-				$.extend(chartSettings,defaults.gvSettings);
-			}
-			
-			eval("var chart = new google.visualization."+defaults.chartType+"(document.getElementById('"+gvChartID+"'))");
-			chart.draw(data, chartSettings);
+			var chart = new google.visualization[defaults.chartType](document.getElementById(gvChartID));
+			chart.draw(data, defaults.gvSettings);
 		}
 	});
 })(jQuery);
