@@ -50,14 +50,17 @@ jQuery('#myTable').gvChart({
 
 `chartType` – You can use five different google charts, by setting chartType to one of:
 
-- [AreaChart](http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/#area)
-- [LineChart](http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/#line)
-- [BarChart](http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/#bar)
-- [ColumnChart](http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/#column)
-- [PieChart](http://www.ivellios.toron.pl/technikalia/2010/06/22/gvchart-plugin-jquery-with-google-charts/#pie)
+- AreaChart
+- LineChart
+- BarChart
+- ColumnChart
+- PieChart
 
 `hideTable` - _Default: true_ – If set to false, it won’t hide table while creating the chart.
 
 `gvSettings` – In the gvSettings variable you can place Google Charts settings, which you can find in the [Google Visualization API Gallery](http://code.google.com/intl/pl-PL/apis/visualization/documentation/gallery.html).
 
 
+# Examples
+
+See `examples.html` file for some demos. 
